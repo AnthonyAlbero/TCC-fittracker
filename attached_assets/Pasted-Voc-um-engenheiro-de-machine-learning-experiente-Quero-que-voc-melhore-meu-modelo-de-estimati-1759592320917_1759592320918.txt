@@ -1,0 +1,62 @@
+Você é um engenheiro de machine learning experiente. 
+Quero que você melhore meu modelo de estimativa de percentual de gordura corporal (BF – body fat) com base em foto, peso, altura, idade e gênero. 
+Atualmente, o modelo está impreciso. Abaixo estão as melhorias que quero que você implemente, passo a passo, no código.
+
+---
+
+🎯 OBJETIVO:
+Criar (ou ajustar) um modelo **multimodal** que combina:
+- Imagem corporal (foto)
+- Dados numéricos: peso, altura, idade, gênero  
+Saída: percentual de gordura corporal (valor contínuo entre 5% e 40%)
+
+---
+
+🧩 ETAPAS E MELHORIAS APLICAR:
+
+1️⃣ **Pré-processamento de imagens**
+- Padronize todas as imagens para 224×224 pixels e normalize os valores entre 0 e 1.
+- Remova o fundo das imagens (background removal) usando um modelo como `U²-Net`, `Segment Anything`, ou `Mediapipe Selfie Segmentation`.
+- Faça data augmentation leve (±5° rotação, ±10% zoom, variação de brilho e contraste).
+
+2️⃣ **Pré-processamento dos dados numéricos**
+- Normalize peso e altura (z-score ou min-max scaling).
+- Converta gênero em 0/1 (ex: masculino=0, feminino=1).
+- Padronize todas as colunas numéricas.
+
+3️⃣ **Modelo multimodal**
+- Use uma **CNN pré-treinada (EfficientNet-B0 ou MobileNetV3)** para extrair embeddings da imagem.
+- Adicione uma **rede densa separada** para processar peso, altura, idade e gênero.
+- Concatene os embeddings da CNN com as features numéricas.
+- Adicione camadas densas finais para regressão (saída: 1 valor de BF).
+
+4️⃣ **Treinamento**
+- Congele os primeiros 70% dos layers da CNN no início.
+- Treine as últimas camadas com learning rate = 1e-4.
+- Depois, descongele tudo e fine-tune com learning rate = 1e-5.
+- Use **MAE (Mean Absolute Error)** como loss function (pois penaliza menos outliers).
+- Use early stopping e redução de LR on plateau.
+
+5️⃣ **Avaliação**
+- Faça **5-fold cross-validation**.
+- Mostre métricas de erro médio (MAE e RMSE).
+- Calcule o erro médio por faixa de idade, gênero e IMC (para ver se o modelo tem viés).
+
+6️⃣ **Pós-processamento**
+- Retorne BF estimado com uma faixa de confiança (±3%).
+- Permita suavização por média móvel (para histórico do usuário).
+
+7️⃣ **Extras**
+- Compare as previsões do modelo com fórmulas tradicionais (ex: US Navy, YMCA, Jackson & Pollock) para validar consistência.
+- Gere logs de treino e gráficos de loss/MAE por época.
+
+---
+
+💾 Linguagem sugerida: Python
+📚 Frameworks: PyTorch (preferencial) ou TensorFlow/Keras
+🧠 Dataset: use placeholders ou simulação se necessário
+🎨 Estrutura final: função `predict_body_fat(image, weight, height, age, gender)` que retorna o BF estimado.
+
+---
+
+Agora, escreva o código completo com essas melhorias aplicadas (organizado e comentado).

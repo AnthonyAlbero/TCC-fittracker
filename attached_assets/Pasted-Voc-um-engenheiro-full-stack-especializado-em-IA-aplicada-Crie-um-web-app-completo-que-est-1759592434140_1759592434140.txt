@@ -1,0 +1,55 @@
+Você é um engenheiro full stack especializado em IA aplicada. 
+Crie um **web app** completo que estima o percentual de gordura corporal (BF – body fat) a partir de uma **foto corporal**, **peso**, **altura**, **idade** e **gênero**.  
+O app deve aplicar técnicas de IA e machine learning para melhorar a precisão da estimativa.
+
+---
+
+🎯 OBJETIVO:
+Desenvolver um sistema com:
+1. Front-end simples para upload de imagem e inserção de dados.
+2. API em Python (Flask ou FastAPI) que processa os dados, roda o modelo e retorna o resultado.
+
+---
+
+🧩 FUNCIONALIDADES E MELHORIAS A IMPLEMENTAR:
+
+1️⃣ **Entrada do usuário**
+- Upload de uma foto corporal (formato JPG/PNG).
+- Campos: peso (kg), altura (cm), idade (anos), gênero (masculino/feminino).
+- Validação básica antes de enviar.
+
+2️⃣ **Pré-processamento da imagem**
+- Redimensionar para 224×224 pixels.
+- Normalizar valores entre 0 e 1.
+- Remover fundo (background removal) usando `Mediapipe` ou `U²-Net` (pode simular se não disponível).
+- Aplicar data augmentation leve (rotação ±5°, brilho ±10%, contraste ±10%).
+
+3️⃣ **Pré-processamento dos dados numéricos**
+- Normalizar peso e altura (min-max ou z-score).
+- Converter gênero em valor binário (masculino=0, feminino=1).
+- Garantir que tudo esteja padronizado como float32.
+
+4️⃣ **Modelo multimodal**
+- Use PyTorch (ou TensorFlow) para criar um modelo com:
+  - CNN pré-treinada (EfficientNet-B0 ou MobileNetV3) para extrair embeddings da imagem.
+  - Rede densa separada para processar os dados numéricos (peso, altura, idade, gênero).
+  - Camada de concatenação.
+  - Camadas densas finais com saída contínua (1 valor: % de gordura corporal).
+
+5️⃣ **Treinamento**
+- Congele 70% dos layers da CNN no início.
+- Treine as últimas camadas (learning rate = 1e-4).
+- Depois destrave e faça fine-tuning (learning rate = 1e-5).
+- Use **MAE (Mean Absolute Error)** como loss function.
+- Implemente early stopping e redução de LR on plateau.
+
+6️⃣ **API Backend**
+- Crie um endpoint `/predict` que recebe:
+  - A imagem (via multipart/form-data)
+  - Peso, altura, idade, gênero
+- O endpoint roda o modelo e retorna um JSON:
+  ```json
+  {
+    "body_fat_estimate": 18.7,
+    "confidence_interval": [16.0, 21.5]
+  }
