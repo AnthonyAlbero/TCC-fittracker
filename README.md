@@ -19,7 +19,7 @@
 
 | Desenvolvedor | Posição | Responsabilidades Principais | GitHub |
 |---------------|---------|------------------------------|--------|
-| **Anthony Sorrentino Albero** | 🎯 Project Manager & DevOps Lead | PM (40%) → DevOps (35%) → Full-stack (25%) | [@italocharaba](https://github.com/italocharaba) |
+| **Anthony Sorrentino Albero** | 🎯 Project Manager & DevOps Lead | PM (40%) → DevOps (35%) → Full-stack (25%) | [@AnthonyAlbero](https://github.com/AnthonyAlbero) |
 
 **Status**: ✅ Graduated - Computer Engineering (December 2025)
 
