@@ -1,9 +1,3 @@
-Você é um engenheiro full stack especializado em IA aplicada. 
-Crie um **web app** completo que estima o percentual de gordura corporal (BF – body fat) a partir de uma **foto corporal**, **peso**, **altura**, **idade** e **gênero**.  
-O app deve aplicar técnicas de IA e machine learning para melhorar a precisão da estimativa.
-
----
-
 🎯 OBJETIVO:
 Desenvolver um sistema com:
 1. Front-end simples para upload de imagem e inserção de dados.
