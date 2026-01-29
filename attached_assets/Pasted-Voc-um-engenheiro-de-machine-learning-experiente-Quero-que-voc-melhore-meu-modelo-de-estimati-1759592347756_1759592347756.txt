@@ -1,9 +1,3 @@
-Você é um engenheiro de machine learning experiente. 
-Quero que você melhore meu modelo de estimativa de percentual de gordura corporal (BF – body fat) com base em foto, peso, altura, idade e gênero. 
-Atualmente, o modelo está impreciso. Abaixo estão as melhorias que quero que você implemente, passo a passo, no código.
-
----
-
 🎯 OBJETIVO:
 Criar (ou ajustar) um modelo **multimodal** que combina:
 - Imagem corporal (foto)
@@ -56,7 +50,3 @@ Saída: percentual de gordura corporal (valor contínuo entre 5% e 40%)
 📚 Frameworks: PyTorch (preferencial) ou TensorFlow/Keras
 🧠 Dataset: use placeholders ou simulação se necessário
 🎨 Estrutura final: função `predict_body_fat(image, weight, height, age, gender)` que retorna o BF estimado.
-
----
-
-Agora, escreva o código completo com essas melhorias aplicadas (organizado e comentado).
